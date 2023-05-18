@@ -33,7 +33,7 @@ impl<T: Sample> BinnedWaveformRenderer<T> {
     /// * `bin_size` - The size of the bins which the min / max values will be binned
     ///                into.
     /// * `config` - See `WaveformConfig`.
-    pub fn new(samples: &SampleSequence<T>, bin_size: usize, config: WaveformConfig) -> Result<BinnedWaveformRenderer<T>, Box<Error>> {
+    pub fn new(samples: &SampleSequence<T>, bin_size: usize, config: WaveformConfig) -> Result<BinnedWaveformRenderer<T>, Box<dyn Error>> {
         let mut data: Vec<MinMaxPair<T>> = Vec::new();
         let nb_samples = samples.data.len();
 
@@ -122,7 +122,7 @@ impl<T: Sample> BinnedWaveformRenderer<T> {
     /// * `img`   - A mutable reference to the slice to write the result into.
     /// * `full_shape` - The `(width, height)` of the whole `img` in pixels.
     ///
-    pub fn render_write(&self, range: TimeRange, offsets: (usize, usize), shape: (usize, usize), img: &mut [u8], full_shape: (usize, usize)) -> Result<(), Box<Error>> {
+    pub fn render_write(&self, range: TimeRange, offsets: (usize, usize), shape: (usize, usize), img: &mut [u8], full_shape: (usize, usize)) -> Result<(), Box<dyn Error>> {
         let (w, h) = shape;
         if w == 0 || h == 0 {
             return Err(Box::new(InvalidSizeError{var_name: "shape".to_string()}));

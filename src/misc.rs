@@ -61,7 +61,7 @@ impl WaveformConfig {
     /// * `amp_max` - Maximum value of amplitude to be rendered
     /// * `foreground` - Foreground `Color` of the image, format must be consistent with background.
     /// * `background` - Background `Color` of the image, format must be consistent with foreground.
-    pub fn new(amp_min: f64, amp_max: f64, foreground: Color, background: Color) -> Result<Self, Box<Error>> {
+    pub fn new(amp_min: f64, amp_max: f64, foreground: Color, background: Color) -> Result<Self, Box<dyn Error>> {
         match Self::check_color_consistency(background, foreground) {
             Err(e) => return Err(e),
             _ => (),
@@ -87,7 +87,7 @@ impl WaveformConfig {
     /// # Arguments
     /// * `foreground` - Foreground `Color` of the image, format must be consistent with background.
     /// * `background` - Background `Color` of the image, format must be consistent with foreground.
-    pub fn set_colors(&mut self, background: Color, foreground: Color) -> Result<(), Box<Error>> {
+    pub fn set_colors(&mut self, background: Color, foreground: Color) -> Result<(), Box<dyn Error>> {
         match Self::check_color_consistency(background, foreground) {
             Err(e) => return Err(e),
             _ => (),
