@@ -19,7 +19,7 @@ use waveform::{
     TimeRange,
 };
 
-#[cfg(feature = "example-gui")]
+// #[cfg(feature = "example-gui")]
 use gtk::{ContainerExt, Image, Inhibit, WidgetExt, Window, WindowExt, WindowType};
 #[cfg(feature = "example-gui")]
 use gdk_pixbuf::Pixbuf;
